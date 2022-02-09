@@ -1,5 +1,4 @@
 altair
 pandas
 streamlit
-transformers
-PyTorch
+transformers[tf-cpu]
