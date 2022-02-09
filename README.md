@@ -1,6 +1,5 @@
-# Welcome to Streamlit!
+# Text Summarizer
 
-Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:
+Check out the Text Summarizer, which deploys a transformer model from Huggingface.co
 
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
+https://share.streamlit.io/chawk89/streamlit-example
