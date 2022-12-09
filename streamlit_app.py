@@ -24,15 +24,15 @@ There are two windows "summarize" and "explain".
 
     if app_mode == computer_science :
         app_sst(
-            str(MODEL_LOCAL_PATH), str(LANG_MODEL_LOCAL_PATH), lm_alpha, lm_beta, beam
+            model = "insert model"
         )
     elif app_mode == data_analytics :
         app_sst(
-            str(MODEL_LOCAL_PATH), str(LANG_MODEL_LOCAL_PATH), lm_alpha, lm_beta, beam
+            model = "insert model"
         )    
     elif app_mode == math:
         app_sst_with_video(
-            str(MODEL_LOCAL_PATH), str(LANG_MODEL_LOCAL_PATH), lm_alpha, lm_beta, beam
+            model = "insert model"
         )
 
 
@@ -64,36 +64,6 @@ st.write('Word count: ', word_count)
 if len(input) > 2000:
     st.write("Input may be just a bit too long!")
 
-
-
-gold = pd.DataFrame({ 'Year': ['2006','2010','2014','2018'],
-                    'Medals': [9,9,9,9]
-                       })
-
-silver = pd.DataFrame({ 'Year':['2006','2010','2014','2018'],
-                    'Medals': [9,15,9,8]
-                       })
-
-bronze = pd.DataFrame({ 'Year': ['2006','2010','2014','2018'],
-                    'Medals': [7,13,10,6]
-                       })
-
-
-if choice == "gold":
-    st.sidebar.dataframe(gold)
-    st.sidebar.table(gold)
-    st.sidebar.line_chart(gold.rename(columns={'Year':'index'}).set_index('index'))
-    st.sidebar.bar_chart(gold.rename(columns={'Year':'index'}).set_index('index'))
-elif choice == "silver":
-    st.sidebar.dataframe(silver)
-    st.sidebar.table(silver)
-    st.sidebar.line_chart(silver.rename(columns={'Year':'index'}).set_index('index'))
-    st.sidebar.bar_chart(siver.rename(columns={'Year':'index'}).set_index('index'))
-else:
-    st.sidebar.dataframe(bronze)
-    st.sidebar.table(bronze)
-    st.sidebar.line_chart(bronze.rename(columns={'Year':'index'}).set_index('index'))
-    st.sidebar.bar_chart(bronze.rename(columns={'Year':'index'}).set_index('index'))
 
 
 
