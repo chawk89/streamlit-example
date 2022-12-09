@@ -3,14 +3,52 @@ from transformers import pipeline
 import pandas as pd
 import time
 
-"""
-# Text Summarizer
 
-Add a snippet of an article to summarize. It may take 5-10 seconds to complete the task! The text summarizer is a transformer model from huggingface.co, pretrained on publisher content. 
+
+def main():
+    st.header("Phantom Tutor")
+    st.markdown(
+        """
+This demo app is using for LLM-based tutors.
+The models sources include HuggingFace and OpenAI.
+Supports hard sciences (computer science, analytics, and math). Visuals (graphs, data tables) can be generated with prompts.
+There are two windows "summarize" and "explain".
 """
+    )
+    
+    
+    computer_science = "Computer Science"
+    data_analytics = "Data Analytics"
+    math = "Math"
+    app_mode = st.selectbox("Choose the app mode", [computer_science, data_analytics, math])
+
+    if app_mode == computer_science :
+        app_sst(
+            str(MODEL_LOCAL_PATH), str(LANG_MODEL_LOCAL_PATH), lm_alpha, lm_beta, beam
+        )
+    elif app_mode == data_analytics :
+        app_sst(
+            str(MODEL_LOCAL_PATH), str(LANG_MODEL_LOCAL_PATH), lm_alpha, lm_beta, beam
+        )    
+    elif app_mode == math:
+        app_sst_with_video(
+            str(MODEL_LOCAL_PATH), str(LANG_MODEL_LOCAL_PATH), lm_alpha, lm_beta, beam
+        )
+
 
 article = "Anger and confusion overflowed at the Olympic mixed-team ski jumping final in China after five female competitors were disqualified from the event by officials who said their jumpsuits didn't comply with the rules."
 input = st.text_area("Insert Text", article)
+
+
+with st.spinner('Wait for it...'):
+    summarizer = pipeline('summarization')
+    output = summarizer(input, min_length = 20,  max_length = 120, do_sample=False)[0]['summary_text']
+    
+st.success('Done!')
+
+input = st.text_area("Talk to me,baby!", chat)
+
+######
 
 choice = st.sidebar.radio("Pick an Olympic medal data set",["bronze","siver","gold"])
 
@@ -58,11 +96,6 @@ else:
     st.sidebar.bar_chart(bronze.rename(columns={'Year':'index'}).set_index('index'))
 
 
-with st.spinner('Wait for it...'):
-    summarizer = pipeline('summarization')
-    output = summarizer(input, min_length = 20,  max_length = 120, do_sample=False)[0]['summary_text']
-    
-st.success('Done!')
 
 
     
