@@ -36,6 +36,8 @@ There are two windows "summarize" and "explain".
         )
 
 
+main()        
+        
 article = "Anger and confusion overflowed at the Olympic mixed-team ski jumping final in China after five female competitors were disqualified from the event by officials who said their jumpsuits didn't comply with the rules."
 input = st.text_area("Insert Text", article)
 
