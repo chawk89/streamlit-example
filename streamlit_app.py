@@ -39,7 +39,7 @@ input = st.text_area("Insert Text", article)
 
 with st.spinner('Wait for it...'):
     summarizer = model
-    output = summarizer(input, min_length = 20,  max_length = 120, do_sample=False)[0]['summary_text']
+    summarized_text = summarizer(input, min_length = 20,  max_length = 120, do_sample=False)[0]['summary_text']
     
 st.success('Done!')
 
