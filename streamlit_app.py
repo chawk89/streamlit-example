@@ -36,6 +36,9 @@ main()
 article = "Anger and confusion overflowed at the Olympic mixed-team ski jumping final in China after five female competitors were disqualified from the event by officials who said their jumpsuits didn't comply with the rules."
 input = st.text_area("Insert Text", article)
 
+# Create an iframe to display a webpage of the user's choice
+url = st.text_input("Enter the URL of the webpage you want to display")
+st.iframe(url, width=800, height=600)
 
 with st.spinner('Wait for it...'):
     summarizer = model
@@ -46,6 +49,4 @@ st.success('Done!')
 # Display the summarized text
 st.write(summarized_text)
 
-# Create an iframe to display a webpage of the user's choice
-url = st.text_input("Enter the URL of the webpage you want to display")
-st.iframe(url, width=800, height=600)
+
