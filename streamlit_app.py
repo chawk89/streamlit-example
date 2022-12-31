@@ -23,17 +23,11 @@ There are two windows "summarize" and "explain".
     app_mode = st.selectbox("Choose the app mode", [computer_science, data_analytics, math])
 
     if app_mode == computer_science :
-        app_sst(
-            model = pipeline('summarization')
-        )
+        model = pipeline('summarization')
     elif app_mode == data_analytics :
-        app_sst(
-            model = pipeline('summarization')
-        )    
+        model = pipeline('summarization')   
     elif app_mode == math:
-        app_sst_with_video(
-            model = pipeline('summarization')
-        )
+        model = pipeline('summarization')
 
 
 main()        
