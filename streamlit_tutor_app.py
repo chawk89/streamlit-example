@@ -1,6 +1,6 @@
 import streamlit as st
+import streamlit.components.v1 as components
 from transformers import pipeline
-import pandas as pd
 import time
 
 
@@ -38,7 +38,7 @@ input = st.text_area("Insert Text", article)
 
 # Create an iframe to display a webpage of the user's choice
 url = st.text_input("Enter the URL of the webpage you want to display")
-st.iframe(url, width=800, height=600)
+components.iframe(url, width=800, height=600)
 
 with st.spinner('Wait for it...'):
     summarizer = model
