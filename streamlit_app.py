@@ -24,15 +24,15 @@ There are two windows "summarize" and "explain".
 
     if app_mode == computer_science :
         app_sst(
-            model = "insert model"
+            model = pipeline('summarization')
         )
     elif app_mode == data_analytics :
         app_sst(
-            model = "insert model"
+            model = pipeline('summarization')
         )    
     elif app_mode == math:
         app_sst_with_video(
-            model = "insert model"
+            model = pipeline('summarization')
         )
 
 
@@ -43,35 +43,14 @@ input = st.text_area("Insert Text", article)
 
 
 with st.spinner('Wait for it...'):
-    summarizer = pipeline('summarization')
+    summarizer = model
     output = summarizer(input, min_length = 20,  max_length = 120, do_sample=False)[0]['summary_text']
     
 st.success('Done!')
 
-input = st.text_area("Talk to me,baby!", chat)
+# Display the summarized text
+st.write(summarized_text)
 
-######
-
-choice = st.sidebar.radio("Pick an Olympic medal data set",["bronze","siver","gold"])
-
-st.sidebar.image("https://sportshub.cbsistatic.com/i/r/2021/12/06/e072d88c-0cd9-4390-b919-353d85710ebb/thumbnail/770x433/94d78d1afd5713db52124e1317f4e8cb/beijing-2022.jpg")    
-st.sidebar.video("https://www.youtube.com/watch?v=SPKckEXhWwU")
-
-word_count = len(input.split())
-
-st.write('Character count: ', len(input))
-st.write('Word count: ', word_count)
-"Please allow a few seconds for me to digest! Any radio button selection may add to the time."
-
-if len(input) > 2000:
-    st.write("Input may be just a bit too long!")
-
-
-
-
-
-    
-c = st.empty()
-c.header('Summary:')
-st.subheader(output)
-st.balloons()
+# Create an iframe to display a webpage of the user's choice
+url = st.text_input("Enter the URL of the webpage you want to display")
+st.iframe(url, width=800, height=600)
