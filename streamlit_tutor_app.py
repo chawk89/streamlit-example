@@ -37,6 +37,10 @@ pytesseract.pytesseract.tesseract_cmd = r"<path-to-tesseract-executable>"
         
 # Define a function that takes a picture and returns the OCR output as a string
 def ocr(image):
+    def ocr(image):
+    # Convert the image to a PIL image if it is a numpy array
+    if isinstance(image, np.ndarray):
+        image = Image.fromarray(image)
     return pytesseract.image_to_string(image)
 
 #def summarize(text):
@@ -55,13 +59,7 @@ st.button("Take a picture")
 if st.button:
     image = st.camera_input("Take a picture or upload an image")
     
-        # Convert the image to a numpy array
-    image_array = np.array(image)
-
-    # Convert the numpy array to a PIL image
-    pil_image = Image.fromarray(image_array)
-    
-    st.image(pil_image, caption="Taken or uploaded image", use_column_width=True)
+    st.image(image, caption="Taken or uploaded image", use_column_width=True)
     text = ocr(image)
     st.write("OCR Output:", text)
 
