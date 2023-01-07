@@ -53,11 +53,10 @@ st.button("Take a picture")
 # When the button is clicked, take a picture and perform OCR and summarization
 # When the button is clicked, take a picture or upload an image and perform OCR
 if st.button:
-    image = st.camera_input()
+    image = st.camera_input("Take a picture or upload an image")
     st.image(image, caption="Taken or uploaded image", use_column_width=True)
     text = ocr(image)
     st.write("OCR Output:", text)
-
 
 
   
