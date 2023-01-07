@@ -51,18 +51,13 @@ input = st.text_area("Insert Text", article)
 st.button("Take a picture")
 
 # When the button is clicked, take a picture and perform OCR and summarization
+# When the button is clicked, take a picture or upload an image and perform OCR
 if st.button:
-    picture = st.camera_input("Take a picture")
-    if picture:
-        image = st.image(picture)
+    image = st.camera_input()
+    st.image(image, caption="Taken or uploaded image", use_column_width=True)
     text = ocr(image)
-    summary = summarize(text)
     st.write("OCR Output:", text)
-    st.write("Summarized Output:", summary)
 
-# Create an iframe to display a webpage of the user's choice
-url = st.text_input("Enter the URL of the webpage you want to display")
-components.iframe(url, width=800, height=600)
 
 
   
