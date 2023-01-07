@@ -1,12 +1,12 @@
 import streamlit as st
 import streamlit.components.v1 as components
-from transformers import pipeline
-import transformers
+from transformers import pipeline, TrOCRProcessor, VisionEncoderDecoderModel
 import numpy as np
 from PIL import Image
 from io import BytesIO
 
-model = transformers.TFBertForTokenClassification.from_pretrained("huggingface/ocr-text-recognition-bar")
+processor = TrOCRProcessor.from_pretrained("microsoft/trocr-base-handwritten")
+model = VisionEncoderDecoderModel.from_pretrained("microsoft/trocr-base-handwritten")
 
 def main():
     st.header("Phantom Tutor")
@@ -46,18 +46,11 @@ def ocr(image):
     # Open the bytes object as a PIL image
     pil_image = Image.open(BytesIO(bytes_data))
 
-    # Convert the PIL image to a numpy array
-    image_array = np.array(pil_image)
+    
+    pixel_values = processor(images=pil_image, return_tensors="pt").pixel_values
+    generated_ids = model.generate(pixel_values)
+    return processor.batch_decode(generated_ids, skip_special_tokens=True)[0]
 
-    # Perform OCR on the numpy array
-    output = model(image_array[None, ..., None])
-
-    # Extract the OCR output as a string
-    text = "".join(output[0][0][:,0].numpy().tolist())
-
-    return text
-
-    return text
 #def summarize(text):
     #summarizer = model
     #summarized_text = summarizer(input, min_length = 20,  max_length = 120, do_sample=False)[0]['summary_text']
