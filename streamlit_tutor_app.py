@@ -41,7 +41,7 @@ def ocr(image):
     bytes_data = image.getvalue()
     
     # Perform OCR on the PIL image
-    text = pytesseract.image_to_string(pil_image)
+    text = pytesseract.image_to_string(bytes_data)
 
     return text    
 
