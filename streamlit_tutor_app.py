@@ -39,9 +39,6 @@ There are two windows "summarize" and "explain".
 def ocr(image):
     # Convert the image to a bytes object
     bytes_data = image.getvalue()
-
-    # Open the bytes object as a PIL image
-    pil_image = Image.open(BytesIO(bytes_data))
     
     # Perform OCR on the PIL image
     text = pytesseract.image_to_string(pil_image)
