@@ -52,8 +52,9 @@ st.button("Take a picture")
 
 # When the button is clicked, take a picture and perform OCR and summarization
 if st.button:
-    image = st.camera()
-    st.image(image, caption="Taken picture", use_column_width=True)
+    picture = st.camera_input("Take a picture")
+    if picture:
+        image = st.image(picture)
     text = ocr(image)
     summary = summarize(text)
     st.write("OCR Output:", text)
