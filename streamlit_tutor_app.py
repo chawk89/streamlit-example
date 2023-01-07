@@ -52,7 +52,14 @@ st.button("Take a picture")
 # When the button is clicked, take a picture or upload an image and perform OCR
 if st.button:
     image = st.camera_input("Take a picture or upload an image")
-    st.image(image, caption="Taken or uploaded image", use_column_width=True)
+    
+        # Convert the image to a numpy array
+    image_array = np.array(image)
+
+    # Convert the numpy array to a PIL image
+    pil_image = Image.fromarray(image_array)
+    
+    st.image(pil_image, caption="Taken or uploaded image", use_column_width=True)
     text = ocr(image)
     st.write("OCR Output:", text)
 
