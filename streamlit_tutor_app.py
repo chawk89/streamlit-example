@@ -1,12 +1,11 @@
 import streamlit as st
 import streamlit.components.v1 as components
 from transformers import pipeline, TrOCRProcessor, VisionEncoderDecoderModel
+import pytesseract
 import numpy as np
 from PIL import Image
 from io import BytesIO
 
-processor = TrOCRProcessor.from_pretrained("microsoft/trocr-base-handwritten")
-model = VisionEncoderDecoderModel.from_pretrained("microsoft/trocr-base-handwritten")
 
 def main():
     st.header("Phantom Tutor")
@@ -43,11 +42,14 @@ def ocr(image):
 
     # Open the bytes object as a PIL image
     pil_image = Image.open(BytesIO(bytes_data))
+    
+    # Perform OCR on the PIL image
+    text = pytesseract.image_to_string(pil_image)
+
+    return text    
 
     
-    pixel_values = processor(images=pil_image, return_tensors="pt").pixel_values
-    generated_ids = model.generate(pixel_values)
-    return processor.batch_decode(generated_ids, skip_special_tokens=True)[0]
+
 
 #def summarize(text):
     #summarizer = model
