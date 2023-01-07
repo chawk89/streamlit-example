@@ -2,4 +2,4 @@ pandas
 streamlit
 transformers[tf-cpu]
 pytesseract
-#pip install pytesseract
+
