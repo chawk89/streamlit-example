@@ -37,7 +37,6 @@ pytesseract.pytesseract.tesseract_cmd = r"<path-to-tesseract-executable>"
         
 # Define a function that takes a picture and returns the OCR output as a string
 def ocr(image):
-    def ocr(image):
     # Convert the image to a PIL image if it is a numpy array
     if isinstance(image, np.ndarray):
         image = Image.fromarray(image)
