@@ -2,7 +2,8 @@ import streamlit as st
 import streamlit.components.v1 as components
 from transformers import pipeline
 import pytesseract
-import time
+from PIL import Image
+
 
 
 
