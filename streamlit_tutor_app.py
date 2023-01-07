@@ -4,8 +4,7 @@ from transformers import pipeline
 import pytesseract
 import numpy as np
 from PIL import Image
-
-
+from io import BytesIO
 
 
 def main():
@@ -40,9 +39,13 @@ pytesseract.pytesseract.tesseract_cmd = r"<path-to-tesseract-executable>"
         
 # Define a function that takes a picture and returns the OCR output as a string
 def ocr(image):
-    # Convert the image to a PIL image if it is a numpy array
-    if isinstance(image, np.ndarray):
-        image = Image.fromarray(image)
+    # Convert the image to a PIL image if it is not already a PIL image
+    if not isinstance(image, Image.Image):
+        # Convert the image to a bytes object
+        bytes_data = image.getvalue()
+
+        # Open the bytes object as a PIL image
+        image = Image.open(BytesIO(bytes_data))
     return pytesseract.image_to_string(image)
 
 #def summarize(text):
@@ -61,9 +64,13 @@ st.button("Take a picture")
 if st.button:
     image = st.camera_input("Take a picture or upload an image")
     
+# Check if the image is None
+if image is not None:
     st.image(image, caption="Taken or uploaded image", use_column_width=True)
     text = ocr(image)
     st.write("OCR Output:", text)
+else:
+    st.write("No image was taken or uploaded")
 
 
   
