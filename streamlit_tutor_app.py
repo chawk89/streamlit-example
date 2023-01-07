@@ -37,15 +37,13 @@ pytesseract.pytesseract.tesseract_cmd = r"<path-to-tesseract-executable>"
 def ocr(image):
     return pytesseract.image_to_string(image)
 
-def summarize(text):
-    summarizer = model
-    summarized_text = summarizer(input, min_length = 20,  max_length = 120, do_sample=False)[0]['summary_text']
-    return summarized_text
+#def summarize(text):
+    #summarizer = model
+    #summarized_text = summarizer(input, min_length = 20,  max_length = 120, do_sample=False)[0]['summary_text']
+    #return summarized_text
        
 main()        
         
-article = "Anger and confusion overflowed at the Olympic mixed-team ski jumping final in China after five female competitors were disqualified from the event by officials who said their jumpsuits didn't comply with the rules."
-input = st.text_area("Insert Text", article)
 
 # Add a button to the Streamlit app that allows the user to take a picture
 st.button("Take a picture")
