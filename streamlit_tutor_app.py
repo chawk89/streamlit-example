@@ -35,8 +35,6 @@ There are two windows "summarize" and "explain".
         pass
         #model = pipeline('summarization')
 
-# Load the OCR model
-pytesseract.pytesseract.tesseract_cmd = r"<path-to-tesseract-executable>"
         
 # Define a function that takes a picture and returns the OCR output as a string
 def ocr(image):
