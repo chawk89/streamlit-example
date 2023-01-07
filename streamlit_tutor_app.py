@@ -1,11 +1,11 @@
 import streamlit as st
 import streamlit.components.v1 as components
 from transformers import pipeline
-import torch
 import numpy as np
 from PIL import Image
 from io import BytesIO
 
+model = transformers.TFBertForTokenClassification.from_pretrained("huggingface/ocr-text-recognition-bar")
 
 def main():
     st.header("Phantom Tutor")
@@ -48,14 +48,13 @@ def ocr(image):
     # Convert the PIL image to a numpy array
     image_array = np.array(pil_image)
 
-    # Convert the numpy array to a tensor
-    tensor = torch.tensor(image_array).unsqueeze(0)
-
-    # Perform OCR on the tensor
-    output = model(tensor)
+    # Perform OCR on the numpy array
+    output = model(image_array[None, ..., None])
 
     # Extract the OCR output as a string
-    text = "".join(output[0][0][:,0].tolist())
+    text = "".join(output[0][0][:,0].numpy().tolist())
+
+    return text
 
     return text
 #def summarize(text):
