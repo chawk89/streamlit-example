@@ -1,7 +1,7 @@
 import streamlit as st
 import streamlit.components.v1 as components
 from transformers import pipeline
-import pytesseract
+import torch
 import numpy as np
 from PIL import Image
 from io import BytesIO
@@ -39,15 +39,25 @@ pytesseract.pytesseract.tesseract_cmd = r"<path-to-tesseract-executable>"
         
 # Define a function that takes a picture and returns the OCR output as a string
 def ocr(image):
-    # Convert the image to a PIL image if it is not already a PIL image
-    if not isinstance(image, Image.Image):
-        # Convert the image to a bytes object
-        bytes_data = image.getvalue()
+    # Convert the image to a bytes object
+    bytes_data = image.getvalue()
 
-        # Open the bytes object as a PIL image
-        image = Image.open(BytesIO(bytes_data))
-    return pytesseract.image_to_string(image)
+    # Open the bytes object as a PIL image
+    pil_image = Image.open(BytesIO(bytes_data))
 
+    # Convert the PIL image to a numpy array
+    image_array = np.array(pil_image)
+
+    # Convert the numpy array to a tensor
+    tensor = torch.tensor(image_array).unsqueeze(0)
+
+    # Perform OCR on the tensor
+    output = model(tensor)
+
+    # Extract the OCR output as a string
+    text = "".join(output[0][0][:,0].tolist())
+
+    return text
 #def summarize(text):
     #summarizer = model
     #summarized_text = summarizer(input, min_length = 20,  max_length = 120, do_sample=False)[0]['summary_text']
