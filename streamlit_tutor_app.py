@@ -26,11 +26,14 @@ There are two windows "summarize" and "explain".
     app_mode = st.selectbox("Choose the app mode", [computer_science, data_analytics, math])
 
     if app_mode == computer_science :
-        model = pipeline('summarization')
+        pass
+        #model = pipeline('summarization')
     elif app_mode == data_analytics :
-        model = pipeline('summarization')   
+        pass
+        #model = pipeline('summarization')   
     elif app_mode == math:
-        model = pipeline('summarization')
+        pass
+        #model = pipeline('summarization')
 
 # Load the OCR model
 pytesseract.pytesseract.tesseract_cmd = r"<path-to-tesseract-executable>"
