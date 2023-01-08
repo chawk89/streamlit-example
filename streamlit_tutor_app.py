@@ -8,7 +8,7 @@ from io import BytesIO
 
 
 def main():
-    st.header("Phantom Tutor")
+    st.header("Sherpa Tutor")
     st.markdown(
         """
 This demo app is using for LLM-based tutors.
