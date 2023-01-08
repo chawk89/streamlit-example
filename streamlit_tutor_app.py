@@ -74,7 +74,7 @@ def summarize_text(text):
 main()        
         
 # Create the selection box
-input_type = st.radio("Input type", ["image", "free text"])
+input_type = st.radio("Input type", ["free text", "image"])
 text_input = st.text_input("Enter your text here:")
 
 # If the user selects "image", show a button
@@ -95,7 +95,9 @@ if image is not None:
 else:
     st.write("No image was taken or uploaded")
 
-
+if text_input:
+    summarized_text = summarize_text(text_input)
+    st.write(summarized_text)
   
 
 
