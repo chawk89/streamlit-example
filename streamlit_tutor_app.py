@@ -5,6 +5,7 @@ import pytesseract
 import numpy as np
 from PIL import Image
 from io import BytesIO
+import openai
 
 
 def main():
@@ -48,7 +49,21 @@ def ocr(image):
 
     return text    
 
-    
+ # Use the openai API key
+openai.api_key = "sk-...sF8oY"
+
+# Set the model to use
+model_engine = "text-currie"
+
+def summarize_text(text):
+  # Use the openai API to summarize the text
+  summary = openai.Completion.create(
+    engine=model_engine,
+    prompt=f"Summarize this text:\n{text}\n",
+    max_tokens=200,
+    temperature=0.7,
+  ).text
+  return summary
 
 
 #def summarize(text):
