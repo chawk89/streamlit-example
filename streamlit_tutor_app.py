@@ -73,9 +73,14 @@ def summarize_text(text):
        
 main()        
         
+# Create the selection box
+input_type = st.radio("Input type", ["image", "free text"])
+text_input = st.text_input("Enter your text here:")
 
-# Add a button to the Streamlit app that allows the user to take a picture
-st.button("Take a picture")
+# If the user selects "image", show a button
+if input_type == "image":
+    # Add a button to the Streamlit app that allows the user to take a picture
+    st.button("Take a picture")
 
 # When the button is clicked, take a picture and perform OCR and summarization
 # When the button is clicked, take a picture or upload an image and perform OCR
