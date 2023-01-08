@@ -50,7 +50,7 @@ def ocr(image):
     return text    
 
  # Use the openai API key
-openai.api_key = "sk-...sF8oY"
+openai.api_key = "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"
 
 # Set the model to use
 model_engine = "text-currie"
