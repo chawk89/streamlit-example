@@ -55,7 +55,7 @@ def ocr(image):
 # Set the OpenAI API key as an environment variable
 openai.api_key = st.secrets["api_key"]
 # Set the model to use
-model_engine = "text-currie"
+model_engine = "currie"
 
 def summarize_text(text):
   # Use the openai API to summarize the text
