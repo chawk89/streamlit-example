@@ -64,8 +64,8 @@ def summarize_text(text):
     prompt=f"Summarize this text:\n{text}\n",
     max_tokens=200,
     temperature=0.7,
-  ).text
-  return summary
+  )
+  return summary.text
 
 
 #def summarize(text):
