@@ -3,4 +3,3 @@ streamlit
 transformers[tf-cpu]
 pytesseract
 openai
-os
