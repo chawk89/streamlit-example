@@ -53,7 +53,7 @@ def ocr(image):
 
 
 # Set the OpenAI API key as an environment variable
-openai.api_key = "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"
+openai.api_key = st.secrets["api_key"]
 # Set the model to use
 model_engine = "text-currie"
 
