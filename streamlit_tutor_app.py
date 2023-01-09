@@ -6,6 +6,10 @@ import numpy as np
 from PIL import Image
 from io import BytesIO
 import openai
+import os
+
+# Set the OpenAI API key as an environment variable
+os.environ["OPENAI_API_KEY"] = "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"
 
 
 def main():
@@ -49,8 +53,7 @@ def ocr(image):
 
     return text    
 
- # Use the openai API key
-openai.api_key = "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"
+
 
 # Set the model to use
 model_engine = "text-currie"
