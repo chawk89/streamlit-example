@@ -86,9 +86,9 @@ text_input = st.text_input("Enter your text here:")
 if input_type == "image":
     # Add a button to the Streamlit app that allows the user to take a picture
     st.button("Take a picture")
-    # When the button is clicked, take a picture or upload an image and perform OCR
-    if st.button:
-        image = st.camera_input("Take a picture or upload an image")
+# When the button is clicked, take a picture or upload an image and perform OCR
+if st.button:
+    image = st.camera_input("Take a picture or upload an image")
     
 # Check if the image is None
 if image is not None:
