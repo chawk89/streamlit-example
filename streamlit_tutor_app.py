@@ -22,9 +22,9 @@ There are two windows "summarize" and "explain".
     )
     
     
-    computer_science = "Computer Science"
-    data_analytics = "Data Analytics"
-    math = "Math"
+    summarizee = "Summarize"
+    make_interesting = "Make it interesting!"
+    help_solve = "Help me solve!"
     app_mode = st.selectbox("Choose the app mode", [summarize, make_interesting, help_solve])
 
     if app_mode == summarize :
