@@ -54,18 +54,18 @@ def ocr(image):
 
 # Set the OpenAI API key as an environment variable
 openai.api_key = st.secrets["api_key"]
-# Set the model to use
-model_engine = "text-curie-001"
 
 def summarize_text(text):
   # Use the openai API to summarize the text
-  summary = openai.Completion.create(
-    engine=model_engine,
+  response = openai.Completion.create(
+    model = "text-curie-001",
     prompt=f"Summarize this text:\n{text}\n",
     max_tokens=200,
     temperature=0.7,
+    frequency_penalty=0.0,
+    presence_penalty=0.0
   )
-  return summary.text
+  return response
 
 
 #def summarize(text):
@@ -98,8 +98,8 @@ else:
     st.write("No image was taken or uploaded")
 
 if text_input:
-    summarized_text = summarize_text(text_input)
-    st.write(summarized_text)
+    summarization = summarize_text(text_input)
+    st.write(summarization)
   
 
 
