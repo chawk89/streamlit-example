@@ -99,7 +99,7 @@ else:
 
 if text_input:
     summarization = summarize_text(text_input)
-    st.write(summarization)
+    st.write(summarization.text)
   
 
 
