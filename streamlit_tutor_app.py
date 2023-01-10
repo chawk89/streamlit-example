@@ -29,13 +29,13 @@ help_solve = "Help me solve!"
 app_mode = st.selectbox("Choose the app mode", [summarize, make_interesting, help_solve])
 
 if app_mode == summarize :
-    prompt = f"Summarize this text as if I'm a 2nd grader:"
+    prompt = "Summarize this text as if I'm a 2nd grader:"
     model = "text-curie-001"
 elif app_mode == make_interesting :
-    prompt = f"Make the following a lot more interesting:"
+    prompt = "Make the following a lot more interesting:"
     model = "text-curie-001"  
 elif app_mode == help_solve:
-    prompt = f"Help me solve the following step by step:" 
+    prompt = "Help me solve the following step by step:" 
     model = "text-davinci-003" 
     
     
@@ -63,13 +63,13 @@ def process_text(text):
   # Use the openai API to summarize the text
   response = openai.Completion.create(
     model = model,
-    prompt= prompt + "\n{text}\n",
+    prompt= prompt + f"\n{text}\n",
     max_tokens=200,
     temperature=0.7,
     frequency_penalty=0.0,
     presence_penalty=0.0
   )
-  st.write(prompt + "\n{text}\n")  
+  st.write(prompt + "\n(text)\n")  
   return response
 
 
