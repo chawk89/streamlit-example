@@ -22,7 +22,7 @@ There are two windows "summarize" and "explain".
     )
     
     
-    summarizee = "Summarize"
+    summarize = "Summarize"
     make_interesting = "Make it interesting!"
     help_solve = "Help me solve!"
     app_mode = st.selectbox("Choose the app mode", [summarize, make_interesting, help_solve])
