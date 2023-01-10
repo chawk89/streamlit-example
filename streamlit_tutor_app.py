@@ -64,7 +64,7 @@ def process_text(text):
   response = openai.Completion.create(
     model = model,
     prompt= prompt + f"\n{text}\n",
-    max_tokens=200,
+    max_tokens=300,
     temperature=0.7,
     frequency_penalty=0.0,
     presence_penalty=0.0
