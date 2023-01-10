@@ -36,7 +36,7 @@ elif app_mode == make_interesting :
     model = "text-curie-001"  
 elif app_mode == help_solve:
     prompt = "Help me solve the following step by step:" 
-    model = "text-davinci-003" 
+    model = "text-curie-001" 
     
     
 
@@ -87,9 +87,9 @@ text_input = st.text_input("Enter your text here:")
 # If the user selects "image", show a button
 if input_type == "image":
     # Add a button to the Streamlit app that allows the user to take a picture
-    st.button("Take a picture")
+    button1 = st.button("Take a picture")
 # When the button is clicked, take a picture or upload an image and perform OCR
-if st.button:
+if button1:
     image = st.camera_input("Take a picture or upload an image")
     
 # Check if the image is None
@@ -100,7 +100,8 @@ if image is not None:
 else:
     text_input = text_input
 
-if text_input:
+button2 = st.button("Help me!")    
+if text_input and button2:
     summarization = process_text(text_input)
     st.write(summarization.choices[0]['text'])
     st.write(summarization)
