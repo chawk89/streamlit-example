@@ -20,7 +20,8 @@ Supports hard sciences (computer science, analytics, and math). Visuals (graphs,
 There are two windows "task" and "chat".
 """
     )
-    
+
+main()  
     
 summarize = "Summarize"
 make_interesting = "Make it interesting!"
@@ -53,7 +54,7 @@ def ocr(image):
 
     return text    
 
-main()  
+
 
 # Set the OpenAI API key as an environment variable
 openai.api_key = st.secrets["api_key"]
@@ -101,6 +102,7 @@ else:
 if text_input:
     summarization = process_text(text_input)
     st.write(summarization.choices[0]['text'])
+    st.write(summarization)
   
 
 
