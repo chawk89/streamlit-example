@@ -99,7 +99,7 @@ else:
 
 if text_input:
     summarization = summarize_text(text_input)
-    st.write(summarization.text)
+    st.write(summarization.["choices"][0]["text"])
   
 
 
