@@ -17,27 +17,27 @@ def main():
 This demo app is using for LLM-based tutors.
 The models sources include HuggingFace and OpenAI.
 Supports hard sciences (computer science, analytics, and math). Visuals (graphs, data tables) can be generated with prompts.
-There are two windows "summarize" and "explain".
+There are two windows "task" and "chat".
 """
     )
     
     
-    summarize = "Summarize"
-    make_interesting = "Make it interesting!"
-    help_solve = "Help me solve!"
-    app_mode = st.selectbox("Choose the app mode", [summarize, make_interesting, help_solve])
+summarize = "Summarize"
+make_interesting = "Make it interesting!"
+help_solve = "Help me solve!"
+app_mode = st.selectbox("Choose the app mode", [summarize, make_interesting, help_solve])
 
-    if app_mode == summarize :
-        prompt = f"Summarize this text as if I'm a 2nd grader:"
-        model = "text-curie-001"
-    elif app_mode == make_interesting :
-        prompt = f"Make the following a lot more interesting:"
-        model = "text-curie-001"  
-    elif app_mode == help_solve:
-        prompt = f"Help me solve the following step by step:" 
-        model = "text-davinci-003" 
+if app_mode == summarize :
+    prompt = f"Summarize this text as if I'm a 2nd grader:"
+    model = "text-curie-001"
+elif app_mode == make_interesting :
+    prompt = f"Make the following a lot more interesting:"
+    model = "text-curie-001"  
+elif app_mode == help_solve:
+    prompt = f"Help me solve the following step by step:" 
+    model = "text-davinci-003" 
     
-    return prompt, model
+    
 
         
 # Define a function that takes a picture and returns the OCR output as a string
