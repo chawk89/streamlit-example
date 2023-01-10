@@ -69,6 +69,7 @@ def process_text(text):
     frequency_penalty=0.0,
     presence_penalty=0.0
   )
+  st.write(prompt + "\n{text}\n")  
   return response
 
 
