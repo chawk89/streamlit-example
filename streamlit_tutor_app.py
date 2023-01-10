@@ -28,13 +28,13 @@ There are two windows "summarize" and "explain".
     app_mode = st.selectbox("Choose the app mode", [summarize, make_interesting, help_solve])
 
     if app_mode == summarize :
-        prompt = f"Summarize this text as if I'm a 2nd grader:\n{text}\n"
+        prompt = f"Summarize this text as if I'm a 2nd grader:"
         model = "text-curie-001"
     elif app_mode == make_interesting :
-        prompt = f"Make the following a lot more interesting:\n{text}\n"
+        prompt = f"Make the following a lot more interesting:"
         model = "text-curie-001"  
     elif app_mode == help_solve:
-        prompt = f"Help me solve the following step by step:\n{text}\n" 
+        prompt = f"Help me solve the following step by step:" 
         model = "text-davinci-003" 
     
     return prompt, model
@@ -62,7 +62,7 @@ def process_text(text):
   # Use the openai API to summarize the text
   response = openai.Completion.create(
     model = model,
-    prompt= prompt,
+    prompt= prompt + "\n{text}\n",
     max_tokens=200,
     temperature=0.7,
     frequency_penalty=0.0,
@@ -93,10 +93,10 @@ if input_type == "image":
 # Check if the image is None
 if image is not None:
     st.image(image, caption="Taken or uploaded image", use_column_width=True)
-    text = ocr(image)
+    text_input = ocr(image)
     st.write("OCR Output:", text)
 else:
-    text = text_input
+    text_input = text_input
 
 if text_input:
     summarization = process_text(text_input)
