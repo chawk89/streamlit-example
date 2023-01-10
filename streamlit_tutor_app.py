@@ -25,17 +25,19 @@ There are two windows "summarize" and "explain".
     computer_science = "Computer Science"
     data_analytics = "Data Analytics"
     math = "Math"
-    app_mode = st.selectbox("Choose the app mode", [computer_science, data_analytics, math])
+    app_mode = st.selectbox("Choose the app mode", [summarize, make_interesting, help_solve])
 
-    if app_mode == computer_science :
-        pass
-        #model = pipeline('summarization')
-    elif app_mode == data_analytics :
-        pass
-        #model = pipeline('summarization')   
-    elif app_mode == math:
-        pass
-        #model = pipeline('summarization')
+    if app_mode == summarize :
+        prompt = f"Summarize this text as if I'm a 2nd grader:\n{text}\n"
+        model = "text-curie-001"
+    elif app_mode == make_interesting :
+        prompt = f"Make the following a lot more interesting:\n{text}\n"
+        model = "text-curie-001"  
+    elif app_mode == help_solve:
+        prompt = f"Help me solve the following step by step:\n{text}\n" 
+        model = "text-davinci-003" 
+    
+    return prompt, model
 
         
 # Define a function that takes a picture and returns the OCR output as a string
@@ -51,15 +53,16 @@ def ocr(image):
 
     return text    
 
+main()  
 
 # Set the OpenAI API key as an environment variable
 openai.api_key = st.secrets["api_key"]
 
-def summarize_text(text):
+def process_text(text):
   # Use the openai API to summarize the text
   response = openai.Completion.create(
-    model = "text-curie-001",
-    prompt=f"Summarize this text:\n{text}\n",
+    model = model,
+    prompt= prompt,
     max_tokens=200,
     temperature=0.7,
     frequency_penalty=0.0,
@@ -73,7 +76,7 @@ def summarize_text(text):
     #summarized_text = summarizer(input, min_length = 20,  max_length = 120, do_sample=False)[0]['summary_text']
     #return summarized_text
        
-main()        
+      
         
 # Create the selection box
 input_type = st.radio("Input type", ["free text", "image"])
@@ -83,11 +86,9 @@ text_input = st.text_input("Enter your text here:")
 if input_type == "image":
     # Add a button to the Streamlit app that allows the user to take a picture
     st.button("Take a picture")
-
-# When the button is clicked, take a picture and perform OCR and summarization
-# When the button is clicked, take a picture or upload an image and perform OCR
-if st.button:
-    image = st.camera_input("Take a picture or upload an image")
+    # When the button is clicked, take a picture or upload an image and perform OCR
+    if st.button:
+        image = st.camera_input("Take a picture or upload an image")
     
 # Check if the image is None
 if image is not None:
@@ -95,10 +96,10 @@ if image is not None:
     text = ocr(image)
     st.write("OCR Output:", text)
 else:
-    st.write("No image was taken or uploaded")
+    text = text_input
 
 if text_input:
-    summarization = summarize_text(text_input)
+    summarization = process_text(text_input)
     st.write(summarization.choices[0]['text'])
   
 
