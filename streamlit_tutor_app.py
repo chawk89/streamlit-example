@@ -96,7 +96,7 @@ if st.button:
 if image is not None:
     st.image(image, caption="Taken or uploaded image", use_column_width=True)
     text_input = ocr(image)
-    st.write("OCR Output:", text)
+    st.write("OCR Output:", text_input)
 else:
     text_input = text_input
 
